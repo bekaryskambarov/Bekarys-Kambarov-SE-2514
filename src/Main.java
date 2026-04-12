@@ -1,113 +1,100 @@
-import java.util.Scanner;
+import java.util.*;
+
 public class Main {
-    public static void main(String[] args){
-        //task1
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter your number: ");
-        int number = scan.nextInt();
-        f1(number);
+    static LinkedList<BankAccount> accounts = new LinkedList<>();
+    static Stack<String> transactionHistory = new Stack<>();
+    static Queue<String> billQueue = new LinkedList<>();
+    static Queue<BankAccount> accountRequests = new LinkedList<>();
 
-        //task2
-        System.out.print("How many numbers are you gonna work with? ");
-        int num = scan.nextInt();
-        int[] numbers = new int[num];
-        fillArray(numbers, 0, scan);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        double total = f2(num, numbers);
-        System.out.println(total/num);
+        BankAccount[] physicalStorage = new BankAccount[3];
+        physicalStorage[0] = new BankAccount("101", "Ali", 150000);
+        physicalStorage[1] = new BankAccount("102", "Sara", 220000);
+        physicalStorage[2] = new BankAccount("103", "Bekarys", 50000);
 
-        //task3
-        System.out.print("Enter your number: ");
-        int num3 = scan.nextInt();
-        System.out.println(f3(num3, 2));
+        for (BankAccount b : physicalStorage) {
+            accounts.add(b);
+        }
 
-        //task4
-        System.out.print("Enter your number: ");
-        int num4 = scan.nextInt();
-        double result = f4(num4);
-        System.out.println(result);
+        while (true) {
+            System.out.println("\n1. Bank\n2. ATM\n3. Admin\n4. Exit");
+            int choice = sc.nextInt();
+            sc.nextLine();
 
-        //task5
-        System.out.print("Enter n for Fibonacci: ");
-        int num5 = scan.nextInt();
-        System.out.println(f5(num5));
-
-        //task6
-        System.out.print("Enter base and power: ");
-        int a = scan.nextInt();
-        int n6 = scan.nextInt();
-        System.out.println(f6(a, n6));
-
-        //task9
-        System.out.print("Enter string to count: ");
-        String s9 = scan.next();
-        System.out.println(f9(s9));
-
-        //task10
-        System.out.print("Enter two numbers for GCD: ");
-        int a10 = scan.nextInt();
-        int b10 = scan.nextInt();
-        System.out.println(f10(a10, b10));
-
+            if (choice == 1) {
+                System.out.println("1. New Acc\n2. Deposit\n3. Withdraw\n4. Bill\n5. Undo");
+                int userChoice = sc.nextInt();
+                sc.nextLine();
+                handleUser(userChoice, sc);
+            } else if (choice == 2) {
+                handleATM(sc);
+            } else if (choice == 3) {
+                handleAdmin(sc);
+            } else if (choice == 4) {
+                break;
+            }
+        }
     }
 
-    public static void f1(int i){
-        if (i == 0)
-            return;
-        System.out.println(i%10);
-        f1(i /= 10);
+    static void handleUser(int choice, Scanner sc) {
+        if (choice == 1) {
+            System.out.print("Name: ");
+            String name = sc.nextLine();
+            accountRequests.add(new BankAccount("NEW", name, 0));
+        } else if (choice == 2 || choice == 3) {
+            System.out.print("Username: ");
+            String name = sc.nextLine();
+            BankAccount acc = find(name);
+            if (acc != null) {
+                double amt = sc.nextDouble();
+                if (choice == 2) {
+                    acc.balance += amt;
+                    transactionHistory.push("Deposit " + amt + " to " + name);
+                } else {
+                    acc.balance -= amt;
+                    transactionHistory.push("Withdraw " + amt + " from " + name);
+                }
+            }
+        } else if (choice == 4) {
+            System.out.print("Bill name: ");
+            billQueue.add(sc.nextLine());
+        } else if (choice == 5 && !transactionHistory.isEmpty()) {
+            System.out.println("Removed: " + transactionHistory.pop());
+        }
     }
 
-    // i have to fill my array so i use recursive function
-    public static void fillArray(int[] arr, int i, Scanner scan) {
-        if (i == arr.length) return;
-        arr[i] = scan.nextInt();
-        fillArray(arr, i + 1, scan);
-    }
-    public static double f2(int num, int[] numbers){
-        if (num <= 0)
-            return 0;
-        return numbers[num-1]+f2(num-1, numbers);
-    }
-
-    public static String f3(int n, int i){
-        if (i >= n)
-            return "prime";
-        if (n % i == 0)
-            return "composite";
-        return f3(n, i+1);
+    static void handleATM(Scanner sc) {
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        BankAccount acc = find(name);
+        if (acc != null) {
+            System.out.println("1. Balance\n2. Withdraw");
+            int c = sc.nextInt();
+            if (c == 1) System.out.println(acc.balance);
+            else acc.balance -= sc.nextDouble();
+        }
     }
 
-    public static double f4(int i){
-        if (i <= 1)
-            return 1;
-        return f4(i-1)*i;
+    static void handleAdmin(Scanner sc) {
+        System.out.println("1. Apprv Acc\n2. Pay Bills\n3. View All");
+        int c = sc.nextInt();
+        if (c == 1 && !accountRequests.isEmpty()) {
+            BankAccount req = accountRequests.poll();
+            req.accountNumber = "ID" + (accounts.size() + 1);
+            accounts.add(req);
+        } else if (c == 2 && !billQueue.isEmpty()) {
+            System.out.println("Paid: " + billQueue.poll());
+        } else if (c == 3) {
+            for (BankAccount a : accounts) System.out.println(a);
+        }
     }
 
-    public static int f5(int n) {
-        if (n == 0)
-            return 0;
-        if (n == 1)
-            return 1;
-        return f5(n - 1) + f5(n - 2);
-
-    }
-
-    public static int f6(int a, int n) {
-        if (n == 0)
-            return 1;
-        return a * f6(a, n - 1);
-    }
-
-    public static int f9(String s) {
-        if (s.equals(""))
-            return 0;
-        return 1 + f9(s.substring(1));
-    }
-
-    public static int f10(int a, int b) {
-        if (b == 0)
-            return a;
-        return f10(b, a % b);
+    static BankAccount find(String name) {
+        for (BankAccount a : accounts) {
+            if (a.username.equalsIgnoreCase(name)) return a;
+        }
+        return null;
     }
 }
