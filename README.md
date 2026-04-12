@@ -1,14 +1,18 @@
 Bekarys Kambarov se2514
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/ed57a8c7-c044-4139-a1eb-8b7ff31446b8" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/696ea663-b3c2-44e1-830f-9df14c53cae9" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/665ee66a-e9d1-4c47-a902-c118cb9264b1" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/3c586752-5ef3-4a1a-9510-7b233d65d2d6" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/60aa6f9f-3a9a-4236-bd38-25007f6e0fdd" />
-Task 1: The function uses % 10 to get each digit and / 10 to move to the next one until the number is 0
-Task 2: The function adds all array elements together recursively and then divides the total by the count.
-Task 3: The function checks if n can be divided by any number starting from 2 up to its root.
-Task 4: The function calculates the result by multiplying the current number by the factorial of the previous number.
-Task 5: The function finds the n-th number by adding the results of the two previous Fibonacci numbers.
-Task 6: The function multiplies the base a by itself n times using recursive calls.
-Task 9: The function adds 1 for every character it finds until the string becomes empty.
-Task 10: The function uses the Euclidean Algorithm to find the GCD by taking the remainder of the two numbers.
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/e0dc0209-8c5e-4eaf-965f-e87a221aef80" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/0500b8e0-60d2-484f-a05e-25cd179e4948" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b94910fa-ba97-411b-8d83-eecbbe1bbafa" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/4ddd43a0-932c-487b-a64c-d9e688a857e2" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b4ebc5d3-8775-4505-b179-e829cb63ddf7" />
+Task 1: Bank Account Storage
+I created a BankAccount class to hold account details. I used a LinkedList to store these accounts because it is dynamic and allows us to easily add or search for users by their username.
+Task 2: Deposit & Withdraw
+I added logic to update the balance of an account directly inside the LinkedList. This allows the bank to handle money transactions for specific users.
+Task 3: Transaction History (Undo)
+I used a Stack to store the history of actions. Since a Stack works on LIFO (Last-In-First-Out) logic, it is the perfect structure for an "Undo" feature, letting us remove the very last action performed.
+Task 4: Bill Payment Queue
+For bill payments, I implemented a Queue. This follows FIFO (First-In-First-Out) logic, ensuring that bills are processed in the exact order they were received.
+Task 5: Account Opening Queue
+I simulated a real banking workflow by creating another Queue for new account requests. The Admin processes these requests one by one before they are officially added to the main system.
+Task 6: Physical Data Structure
+I used a standard Array to store three predefined accounts. This shows the difference between a physical structure (fixed size) and logical structures like LinkedLists.
