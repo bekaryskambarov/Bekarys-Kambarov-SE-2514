@@ -1,18 +1,11 @@
 Bekarys Kambarov se2514
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/e0dc0209-8c5e-4eaf-965f-e87a221aef80" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/0500b8e0-60d2-484f-a05e-25cd179e4948" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b94910fa-ba97-411b-8d83-eecbbe1bbafa" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/4ddd43a0-932c-487b-a64c-d9e688a857e2" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b4ebc5d3-8775-4505-b179-e829cb63ddf7" />
-Task 1: Bank Account Storage
-I created a BankAccount class to hold account details. I used a LinkedList to store these accounts because it is dynamic and allows us to easily add or search for users by their username.
-Task 2: Deposit & Withdraw
-I added logic to update the balance of an account directly inside the LinkedList. This allows the bank to handle money transactions for specific users.
-Task 3: Transaction History (Undo)
-I used a Stack to store the history of actions. Since a Stack works on LIFO (Last-In-First-Out) logic, it is the perfect structure for an "Undo" feature, letting us remove the very last action performed.
-Task 4: Bill Payment Queue
-For bill payments, I implemented a Queue. This follows FIFO (First-In-First-Out) logic, ensuring that bills are processed in the exact order they were received.
-Task 5: Account Opening Queue
-I simulated a real banking workflow by creating another Queue for new account requests. The Admin processes these requests one by one before they are officially added to the main system.
-Task 6: Physical Data Structure
-I used a standard Array to store three predefined accounts. This shows the difference between a physical structure (fixed size) and logical structures like LinkedLists.
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b2d7e33e-8c03-4f68-bd7b-d5fb8b1dd712" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8d2dc5f1-77d4-4545-baa8-b989ed138a4b" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/3269c3c7-314a-477e-9605-7f1323e6b4a2" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c34547ea-9dee-41fb-9a63-9cd39c36783f" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b691393b-4ca0-401a-a1db-9ce04e0fe1ae" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c36dd00f-73d4-4b65-acc6-d56435771677" />
+This project was designed to test how different algorithms actually handle data in a real-world environment. We often talk about Big-O notation in class, but this experiment allowed me to measure exactly how many nanoseconds it takes to sort and search through arrays of different sizes. I implemented Bubble Sort as my basic algorithm, Quick Sort for the advanced category, and Binary Search for the searching portion.
+I chose these three because they represent very different approaches to data management. Bubble Sort is a simple O(n^2) method that just swaps neighbors until everything is in place. Quick Sort is a more complex O(n \log n)ivide and conquer" algorithm that uses a pivot to split the work. Finally, Binary Search is a O(\log n) tool that finds values by constantly cutting the search area in half, but it only works if the array is already sorted.
+I ran the experiments using System.nanoTime() on a laptop, testing both random and already sorted arrays. Here is the data I collected:  10 Elements (Small): Random Basic Sort took 5,200 ns; Advanced took 10,200 ns. Search was 2,000 ns.100 Elements (Medium): Random Basic Sort jumped to 125,500 ns; Advanced stayed low at 20,100 ns.1000 Elements (Large): Random Basic Sort hit 11,846,800 ns; Advanced was only 103,000 ns.5000 Elements (Very Large): Random Basic Sort took a massive 17,382,800 ns, while Advanced finished in 350,700 ns. Search time stayed almost flat at 1,500 ns.
+Looking at the numbers, the difference between $O(n^2)$ and $O(n \log n)$ is huge once you get past 100 elements. Quick Sort was much faster on all the large random tests. However, an interesting thing happened on the sorted tests. For the 5000-element sorted array, Bubble Sort actually sped up to 2.7 million ns because it didn't have to do as many swaps, while my Quick Sort implementation actually slowed down to 6.6 million ns. This happened because my Quick Sort uses the last element as a pivot, which is a "worst-case" scenario for sorted data.  Regarding searching, Binary Search was incredibly efficient. Even when the array size increased by 500 times (from 10 to 5000), the search time barely moved. This proves that $O(\log n)$ is the way to go for looking up data. The reason it requires a sorted array is that without order, the algorithm wouldn't know which half of the data to throw away after each comparison.  
