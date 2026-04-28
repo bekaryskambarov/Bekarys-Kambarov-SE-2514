@@ -7,7 +7,5 @@ public class Main {
 
         // Run experiments [cite: 39]
         experiment.runAllExperiments();
-
-        System.out.println("Analysis Complete. Check results for README report.");
     }
 }

@@ -41,6 +41,7 @@ public class Experiment {
         }
     }
 
+
     private void runTests(int[] data, String dataType) {
         System.out.println("Data Type: " + dataType);
 
