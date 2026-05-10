@@ -1,11 +1,17 @@
-Bekarys Kambarov se2514
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b2d7e33e-8c03-4f68-bd7b-d5fb8b1dd712" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/8d2dc5f1-77d4-4545-baa8-b989ed138a4b" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/3269c3c7-314a-477e-9605-7f1323e6b4a2" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c34547ea-9dee-41fb-9a63-9cd39c36783f" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/b691393b-4ca0-401a-a1db-9ce04e0fe1ae" />
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c36dd00f-73d4-4b65-acc6-d56435771677" />
-This project was designed to test how different algorithms actually handle data in a real-world environment. We often talk about Big-O notation in class, but this experiment allowed me to measure exactly how many nanoseconds it takes to sort and search through arrays of different sizes. I implemented Bubble Sort as my basic algorithm, Quick Sort for the advanced category, and Binary Search for the searching portion.
-I chose these three because they represent very different approaches to data management. Bubble Sort is a simple O(n^2) method that just swaps neighbors until everything is in place. Quick Sort is a more complex O(n \log n)ivide and conquer" algorithm that uses a pivot to split the work. Finally, Binary Search is a O(\log n) tool that finds values by constantly cutting the search area in half, but it only works if the array is already sorted.
-I ran the experiments using System.nanoTime() on a laptop, testing both random and already sorted arrays. Here is the data I collected:  10 Elements (Small): Random Basic Sort took 5,200 ns; Advanced took 10,200 ns. Search was 2,000 ns.100 Elements (Medium): Random Basic Sort jumped to 125,500 ns; Advanced stayed low at 20,100 ns.1000 Elements (Large): Random Basic Sort hit 11,846,800 ns; Advanced was only 103,000 ns.5000 Elements (Very Large): Random Basic Sort took a massive 17,382,800 ns, while Advanced finished in 350,700 ns. Search time stayed almost flat at 1,500 ns.
-Looking at the numbers, the difference between $O(n^2)$ and $O(n \log n)$ is huge once you get past 100 elements. Quick Sort was much faster on all the large random tests. However, an interesting thing happened on the sorted tests. For the 5000-element sorted array, Bubble Sort actually sped up to 2.7 million ns because it didn't have to do as many swaps, while my Quick Sort implementation actually slowed down to 6.6 million ns. This happened because my Quick Sort uses the last element as a pivot, which is a "worst-case" scenario for sorted data.  Regarding searching, Binary Search was incredibly efficient. Even when the array size increased by 500 times (from 10 to 5000), the search time barely moved. This proves that $O(\log n)$ is the way to go for looking up data. The reason it requires a sorted array is that without order, the algorithm wouldn't know which half of the data to throw away after each comparison.  
+Bekarys Kabarov 2514 assignment4
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/10a49da0-44e4-404a-ba4c-295a8e678f38" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/c5b08683-d011-4b26-b6a3-a3822c8a0e4f" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/80ce3c95-d6a1-4c22-b29b-814bac9c1770" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/a5b919a4-81c3-443a-bf11-17eeaea7815b" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/f3d55744-1460-43dc-a4ae-54ef197af68e" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/f8d96f10-8dd3-496e-a0fd-5343e9ce15bb" />
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/002fafe8-091a-49ff-9157-d9c15801989f" />
+This project implements a graph data structure using an Adjacency List representation. The system is designed to demonstrate the fundamental concepts of graph theory, specifically focusing on how different traversal algorithms behave as the graph scale increases.
+
+Observations:
+Complexity: The results align with the expected 
+ time complexity. As the number of vertices increased from 10 to 100, the execution time increased proportionally.
+BFS vs DFS: In my tests, [DFS/BFS] appeared slightly faster, likely due to the lower overhead of recursion compared to managing a Queue object in the heap.
+Structure Impact: The traversal order changes significantly based on how edges are added, but the time complexity remains stable as long as the edge-to-vertex ratio remains relatively consistent.
+
+During this assignment, I learned how the choice of data structure (Adjacency List vs. Adjacency Matrix) impacts memory usage. Implementing the traversal algorithms helped me understand the practical difference between level-order exploration (BFS) and deep-branch exploration (DFS). The biggest challenge was ensuring the Edge class correctly referenced the Vertex objects to maintain proper OOP principles.
